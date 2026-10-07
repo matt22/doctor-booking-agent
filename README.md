@@ -132,6 +132,7 @@ The API will validate this output before using it. If inference fails, times out
 - [Deployment and operations](docs/deployment-operations.md)
 - [Evaluation strategy](docs/evaluation.md)
 - [Delivery roadmap](docs/roadmap.md)
+- [Open questions](docs/open-questions.md)
 - [Architecture decisions](docs/decisions/README.md)
 
 ## Planned repository structure

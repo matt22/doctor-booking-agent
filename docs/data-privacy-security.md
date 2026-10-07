@@ -72,7 +72,7 @@ erDiagram
     }
 ```
 
-Exact physical constraints will be decided during schema implementation. At minimum, the database must prevent more than one active booking for a slot. A partial unique index or an immutable booking/slot state transition may be used after concurrency tests validate the approach.
+Exact physical constraints will be decided during schema implementation. At minimum, the database must prevent more than one active booking for a slot. A partial unique index or an immutable booking/slot state transition may be used after concurrency tests validate the approach. See [open questions](open-questions.md) 1–4 for proposed changes to this model.
 
 ## Management token design
 

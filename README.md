@@ -132,6 +132,7 @@ The API will validate this output before using it. If inference fails, times out
 - [Deployment and operations](docs/deployment-operations.md)
 - [Evaluation strategy](docs/evaluation.md)
 - [Acceptance criteria](docs/acceptance-criteria.md)
+- [Synthetic catalogue](docs/synthetic-catalogue.md)
 - [Delivery roadmap](docs/roadmap.md)
 - [Open questions](docs/open-questions.md)
 - [Architecture decisions](docs/decisions/README.md)
@@ -170,5 +171,5 @@ Detailed, testable criteria are in [Acceptance criteria](docs/acceptance-criteri
 
 ## Status
 
-**Milestone 0 — planning and architecture.** No implementation has started.
+**Milestone 0 — planning and architecture: complete.** Next: Milestone 1, the deterministic vertical slice.
 

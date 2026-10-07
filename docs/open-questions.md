@@ -7,8 +7,8 @@ Questions that must be answered before, or during, implementation. Each entry ca
 | 1 | How do service durations relate to slots? | Milestone 1 | Accepted |
 | 2 | Which service does a booking record? | Milestone 1 | Accepted |
 | 3 | What is the single source of truth for slot availability? | Milestone 1 | Accepted |
-| 4 | How does the public demo keep future availability? | Milestone 1 | Proposed |
-| 5 | Which timezone interprets relative dates and times? | Milestone 1 | Proposed |
+| 4 | How does the public demo keep future availability? | Milestone 1 | Accepted |
+| 5 | Which timezone interprets relative dates and times? | Milestone 1 | Accepted |
 | 6 | Where are rate limits enforced? | Milestone 2 | Proposed |
 | 7 | What cold-start latency is acceptable? | Milestone 5 | Open |
 | 8 | Which external providers are used? | Milestones 2–5 | Deferred |

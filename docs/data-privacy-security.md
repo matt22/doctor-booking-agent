@@ -23,6 +23,7 @@ erDiagram
     DOCTOR ||--o{ DOCTOR_SERVICE : provides
     SERVICE ||--o{ DOCTOR_SERVICE : offered_by
     DOCTOR ||--o{ APPOINTMENT_SLOT : owns
+    DOCTOR ||--o{ SCHEDULE_TEMPLATE : works
     APPOINTMENT_SLOT ||--o{ BOOKING : claimed_by
     SERVICE ||--o{ BOOKING : booked_as
     BOOKING ||--o{ ADMIN_AUDIT_EVENT : affected_by
@@ -48,6 +49,13 @@ erDiagram
     DOCTOR_SERVICE {
         uuid doctor_id FK
         uuid service_id FK
+    }
+    SCHEDULE_TEMPLATE {
+        uuid id PK
+        uuid doctor_id FK
+        int weekday
+        time starts_local
+        time ends_local
     }
     APPOINTMENT_SLOT {
         uuid id PK
@@ -89,6 +97,12 @@ Model rules (see [open questions](open-questions.md) 1–3):
 
 - `availability_state` holds administrative state only (`open` or `blocked`) and is never changed by booking or cancellation.
 - A slot is bookable when it is `open`, starts in the future and has no active booking. A unique-violation on insert maps to HTTP `409 Conflict`.
+
+Availability and time rules (see [open questions](open-questions.md) 4–5):
+
+- `SCHEDULE_TEMPLATE` rows describe each doctor's recurring weekly hours in clinic-local time. Search and slot-listing requests ensure slots exist for the next 14 days, at most once per hour, by inserting missing slots with `ON CONFLICT DO NOTHING`. `appointment_slot` carries `UNIQUE (doctor_id, starts_at)` to make this idempotent.
+- A weekly scheduled workflow cancels active synthetic bookings older than seven days and deletes past slots that have no booking.
+- All relative dates and times are interpreted in `CLINIC.timezone`. Times are stored as `timestamptz` and displayed in clinic-local time with the timezone labelled.
 
 ## Management token design
 

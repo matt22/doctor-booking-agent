@@ -103,5 +103,6 @@ Logs will use correlation IDs but exclude conversation text, email addresses and
 - A failed email attempt does not roll back a confirmed booking.
 - A database outage returns a clear retryable response rather than cached availability.
 - Synthetic schedules can be recreated from seed data.
+- Future slots are generated on demand from schedule templates, and a weekly scheduled workflow resets stale demo bookings without keeping the service warm.
 - Minimal booking data can be exported for provider migration.
 

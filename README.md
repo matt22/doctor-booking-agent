@@ -131,6 +131,7 @@ The API will validate this output before using it. If inference fails, times out
 - [Data, privacy and security](docs/data-privacy-security.md)
 - [Deployment and operations](docs/deployment-operations.md)
 - [Evaluation strategy](docs/evaluation.md)
+- [Acceptance criteria](docs/acceptance-criteria.md)
 - [Delivery roadmap](docs/roadmap.md)
 - [Open questions](docs/open-questions.md)
 - [Architecture decisions](docs/decisions/README.md)
@@ -165,7 +166,7 @@ The first public release will be successful when a visitor can:
 - Receive and use a private management token to cancel.
 - See the slot become unavailable and later available after cancellation.
 
-The project must also pass automated domain tests, agent evaluation cases, container smoke tests, accessibility checks and security scanning.
+Detailed, testable criteria are in [Acceptance criteria](docs/acceptance-criteria.md). The project must also pass automated domain tests, agent evaluation cases, container smoke tests, accessibility checks and security scanning.
 
 ## Status
 

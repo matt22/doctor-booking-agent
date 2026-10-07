@@ -5,7 +5,7 @@
 - Publish product scope and non-goals.
 - Define architecture, data boundaries and deployment direction.
 - Record major decisions and [unresolved questions](open-questions.md).
-- Agree on first-release acceptance criteria.
+- Agree on first-release [acceptance criteria](acceptance-criteria.md).
 
 Exit criterion: documentation is coherent enough to scaffold without inventing product behavior during implementation.
 

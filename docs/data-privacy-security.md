@@ -23,7 +23,8 @@ erDiagram
     DOCTOR ||--o{ DOCTOR_SERVICE : provides
     SERVICE ||--o{ DOCTOR_SERVICE : offered_by
     DOCTOR ||--o{ APPOINTMENT_SLOT : owns
-    APPOINTMENT_SLOT ||--o| BOOKING : claimed_by
+    APPOINTMENT_SLOT ||--o{ BOOKING : claimed_by
+    SERVICE ||--o{ BOOKING : booked_as
     BOOKING ||--o{ ADMIN_AUDIT_EVENT : affected_by
 
     CLINIC {
@@ -35,6 +36,7 @@ erDiagram
         uuid id PK
         uuid clinic_id FK
         text display_name
+        int slot_minutes
         boolean active
     }
     SERVICE {
@@ -52,11 +54,12 @@ erDiagram
         uuid doctor_id FK
         timestamptz starts_at
         timestamptz ends_at
-        text availability_state
+        text availability_state "open | blocked"
     }
     BOOKING {
         uuid id PK
         uuid slot_id FK
+        uuid service_id FK
         text public_reference UK
         text management_token_hash UK
         timestamptz email_attempted_at
@@ -72,7 +75,20 @@ erDiagram
     }
 ```
 
-Exact physical constraints will be decided during schema implementation. At minimum, the database must prevent more than one active booking for a slot. A partial unique index or an immutable booking/slot state transition may be used after concurrency tests validate the approach. See [open questions](open-questions.md) 1–4 for proposed changes to this model.
+Model rules (see [open questions](open-questions.md) 1–3):
+
+- Each doctor has one fixed `slot_minutes`. Every service a doctor provides must fit within one slot, and seed validation rejects any service longer than its doctor's slot length. A booking claims exactly one slot.
+- A booking records the service booked. The booking transaction verifies that a `DOCTOR_SERVICE` row exists for the slot's doctor and that service.
+- Bookings are the only source of truth for whether a slot is taken. A slot may have many historical bookings but at most one active booking, enforced by a partial unique index:
+
+  ```sql
+  CREATE UNIQUE INDEX booking_one_active_per_slot
+      ON booking (slot_id)
+      WHERE cancelled_at IS NULL;
+  ```
+
+- `availability_state` holds administrative state only (`open` or `blocked`) and is never changed by booking or cancellation.
+- A slot is bookable when it is `open`, starts in the future and has no active booking. A unique-violation on insert maps to HTTP `409 Conflict`.
 
 ## Management token design
 

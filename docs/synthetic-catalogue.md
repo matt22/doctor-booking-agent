@@ -2,13 +2,15 @@
 
 The fixed demo data used by seeding, search, the deterministic interpreter and evaluation cases. Every clinic, doctor and schedule here is fictional.
 
+Names follow a cosmic theme: gender-neutral first names and astronomical surnames. This keeps them professional, obviously fictional, and not suggestive of any particular ethnicity or real person.
+
 The implementation will hold this catalogue in one versioned file, `data/catalogue.yaml`. The seed loader, the service alias table and the evaluation fixtures all read from that file, so they cannot drift apart.
 
 ## Clinic
 
 | Field | Value |
 | --- | --- |
-| Name | Harbourside Demo Clinic |
+| Name | Northstar Demo Clinic |
 | Timezone | `Europe/London` |
 | Booking window | Next 14 days |
 
@@ -33,12 +35,12 @@ Alias matching is case-insensitive and ignores surrounding punctuation. Each ali
 
 | Doctor | Slot minutes | Services | Weekly hours (clinic time) | Active |
 | --- | --- | --- | --- | --- |
-| Dr Aisha Shah | 45 | sports physiotherapy, musculoskeletal assessment | Mon, Tue, Thu 12:00–19:30 | Yes |
-| Dr Tom Okafor | 45 | sports physiotherapy, musculoskeletal assessment, nutrition consultation | Wed, Fri 08:00–14:00 | Yes |
-| Dr Elena Rossi | 20 | general consultation, blood test, travel vaccination, stop-smoking consultation | Mon–Fri 09:00–13:00 | Yes |
-| Dr Sam Patel | 30 | general consultation, blood test, skin check | Mon–Thu 13:00–18:00, Sat 09:00–12:00 | Yes |
-| Dr Mei Lin | 45 | nutrition consultation | Tue, Thu 10:00–16:00 | Yes |
-| Dr Grace Moreno | 45 | sports physiotherapy | Mon–Fri 09:00–17:00 | **No** |
+| Dr Avery Nova | 45 | sports physiotherapy, musculoskeletal assessment | Mon, Tue, Thu 12:00–19:30 | Yes |
+| Dr Jordan Meridian | 45 | sports physiotherapy, musculoskeletal assessment, nutrition consultation | Wed, Fri 08:00–14:00 | Yes |
+| Dr Casey Zenith | 20 | general consultation, blood test, travel vaccination, stop-smoking consultation | Mon–Fri 09:00–13:00 | Yes |
+| Dr Morgan Halo | 30 | general consultation, blood test, skin check | Mon–Thu 13:00–18:00, Sat 09:00–12:00 | Yes |
+| Dr Rowan Solstice | 45 | nutrition consultation | Tue, Thu 10:00–16:00 | Yes |
+| Dr Quinn Orion | 45 | sports physiotherapy | Mon–Fri 09:00–17:00 | **No** |
 
 Slots run back to back from each block's start time. A block that does not divide evenly ends at the last whole slot.
 
@@ -48,14 +50,14 @@ The catalogue is shaped so that alternative and rejection paths are exercised, n
 
 | Scenario | What the data guarantees | Exercises |
 | --- | --- | --- |
-| Dr Shah, sports physio, Tuesday after 4 pm | Available; this is the README example | Exact match |
-| Sports physio, Wednesday after 4 pm | Only Dr Okafor works Wednesdays, mornings only | Alternative date or time window |
+| Dr Nova, sports physio, Tuesday after 4 pm | Available; this is the README example | Exact match |
+| Sports physio, Wednesday after 4 pm | Only Dr Meridian works Wednesdays, mornings only | Alternative date or time window |
 | Any service on Sunday | No doctor works Sundays | Alternative date |
-| Skin check with any doctor except Dr Patel | Only Dr Patel provides it | Alternative date only; no alternative doctor exists |
-| Travel vaccination after 1 pm | Dr Rossi works mornings only | Outside-time-window alternatives |
-| Dr Moreno | Inactive doctor with a schedule | Inactive doctors never appear and are treated as unknown |
-| Dr Lin for a blood test | Dr Lin does not provide it | Ineligible doctor and service pair is rejected |
-| Saturday general consultation | Only Dr Patel, 09:00–12:00 | Narrow availability |
+| Skin check with any doctor except Dr Halo | Only Dr Halo provides it | Alternative date only; no alternative doctor exists |
+| Travel vaccination after 1 pm | Dr Zenith works mornings only | Outside-time-window alternatives |
+| Dr Orion | Inactive doctor with a schedule | Inactive doctors never appear and are treated as unknown |
+| Dr Solstice for a blood test | Dr Solstice does not provide it | Ineligible doctor and service pair is rejected |
+| Saturday general consultation | Only Dr Halo, 09:00–12:00 | Narrow availability |
 
 ## Unsupported requests
 
@@ -63,7 +65,7 @@ These must be rejected or clarified, never mapped to a service.
 
 - **Services outside the catalogue:** dentist, MRI scan, chiropractor, eye test, counselling.
 - **Ambiguous phrases:** "assessment", "an appointment", "see someone". These need a clarification question.
-- **Unknown doctors:** any name not in the active doctor list, including Dr Moreno.
+- **Unknown doctors:** any name not in the active doctor list, including Dr Orion.
 - **Symptom descriptions:** for example "my knee hurts" or "I have a rash". These get the neutral non-diagnostic response from CONV-7 and are not silently mapped to a service.
 - **Emergency language:** for example "chest pain" or "can't breathe". These get the emergency-services boundary response.
 

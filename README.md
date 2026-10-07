@@ -21,7 +21,7 @@ This repository is currently in the **architecture and planning phase**. It inte
 
 A visitor might ask:
 
-> I need a sports physiotherapy appointment with Dr Shah next Tuesday after 4 pm.
+> I need a sports physiotherapy appointment with Dr Nova next Tuesday after 4 pm.
 
 The system will:
 
@@ -113,7 +113,7 @@ An optional model can improve natural-language interpretation using a strict sch
 {
   "intent": "search_appointments",
   "service_query": "sports physiotherapy",
-  "doctor_name": "Dr Shah",
+  "doctor_name": "Dr Nova",
   "date_expression": "next Tuesday",
   "earliest_time": "16:00",
   "latest_time": null,

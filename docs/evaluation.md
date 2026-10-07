@@ -51,11 +51,11 @@ Each case defines expected structured fields and allowable clarification behavio
 ```json
 {
   "name": "preferred doctor after work",
-  "input": "Sports physio with Dr Shah next Tuesday after 4",
+  "input": "Sports physio with Dr Nova next Tuesday after 4",
   "expected": {
     "intent": "search_appointments",
     "service_code": "sports_physiotherapy",
-    "doctor": "dr_shah",
+    "doctor": "dr_nova",
     "earliest_time": "16:00",
     "requires_clarification": false
   }

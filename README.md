@@ -4,7 +4,7 @@ An AI-assisted doctor appointment booking simulation designed as a permanent, lo
 
 The application will let a visitor describe a treatment need, preferred doctor, date, and time in natural language. An assistant will interpret the request, search verified availability, offer suitable appointment slots, and create a mock booking after explicit confirmation.
 
-This repository is currently in the **architecture and planning phase**. It intentionally contains no application code yet.
+This repository is in **Milestone 1**: the API skeleton exists, and the booking flow is being built.
 
 > **Educational simulation only:** This project will not create real medical appointments, provide medical advice, diagnose conditions, or collect medical records. Visitors will be told not to enter personal, medical, or emergency information.
 
@@ -137,6 +137,18 @@ The API will validate this output before using it. If inference fails, times out
 - [Open questions](docs/open-questions.md)
 - [Architecture decisions](docs/decisions/README.md)
 
+## Run the API locally
+
+Requires [uv](https://docs.astral.sh/uv/).
+
+```bash
+cd apps/api
+uv sync
+uv run uvicorn app.main:app --reload
+```
+
+Then open <http://localhost:8000/health/live> or the interactive docs at <http://localhost:8000/docs>. Run checks with `uv run ruff check .`, `uv run mypy` and `uv run pytest`.
+
 ## Planned repository structure
 
 ```text
@@ -171,5 +183,7 @@ Detailed, testable criteria are in [Acceptance criteria](docs/acceptance-criteri
 
 ## Status
 
-**Milestone 0 — planning and architecture: complete.** Next: Milestone 1, the deterministic vertical slice.
+**Milestone 0 — planning and architecture: complete.**
+
+**Milestone 1 — deterministic vertical slice: in progress.** API skeleton, health endpoints and CI are in place.
 

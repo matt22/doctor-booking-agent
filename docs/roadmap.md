@@ -10,7 +10,7 @@
 
 Exit criterion: documentation is coherent enough to scaffold without inventing product behavior during implementation.
 
-## Milestone 1 — deterministic vertical slice
+## Milestone 1 — deterministic vertical slice (in progress)
 
 - Scaffold FastAPI, React, Tailwind and PostgreSQL.
 - Add synthetic service, doctor and slot seed data.

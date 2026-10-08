@@ -1,0 +1,31 @@
+[project]
+name = "doctor-booking-api"
+version = "0.1.0"
+description = "API for the Northstar Demo Clinic booking simulation"
+requires-python = ">=3.12"
+dependencies = [
+    "fastapi>=0.115",
+    "uvicorn[standard]>=0.30",
+]
+
+[dependency-groups]
+dev = [
+    "httpx>=0.27",
+    "mypy>=1.11",
+    "pytest>=8.3",
+    "ruff>=0.6",
+]
+
+[tool.ruff]
+line-length = 100
+target-version = "py312"
+
+[tool.ruff.lint]
+select = ["E", "F", "I", "UP", "B", "SIM"]
+
+[tool.mypy]
+strict = true
+packages = ["app"]
+
+[tool.pytest.ini_options]
+testpaths = ["tests"]
